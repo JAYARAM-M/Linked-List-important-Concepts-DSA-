@@ -1,0 +1,140 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct Node{
+    int data;
+    struct Node *next;
+}NODE;
+
+NODE *head=NULL;
+NODE *tail=NULL;
+int top;
+int stack[5];
+int size=0;
+int f,count=0,item;
+
+NODE *createnode()
+{
+    NODE *newnode=(NODE *)malloc(sizeof(NODE *));
+    printf("enter the data:\n");
+    scanf("%d",&newnode->data);
+    newnode->next=NULL;
+    printf("new node created");
+    return newnode;
+}
+
+void addfirst()
+{
+    NODE *temp=createnode();
+    if(head==NULL)
+    {
+        head=temp;
+        tail=head;
+        printf("add first made\n");
+        return;
+    }
+    temp->next=head;
+    head=temp;
+    printf("add first done\n");
+    size++;
+}
+
+void print(NODE *th)
+{
+    //NODE* th=head;
+    printf("the orginal order\n");
+    while(th!=NULL)
+    {
+        printf("%d",th->data);
+        th=th->next;
+    }
+    //free(th);
+    printf("\nreverse order:\n");
+}
+
+void printrev(NODE *th)
+{
+    //NODE *th=head;
+    //printf("reverse value\n");
+    if(th==NULL)
+    return;
+    printrev(th->next);
+    printf("%d",th->data);
+    
+}
+
+void mid(NODE *th)
+{
+    NODE *th1=head->next;
+    while(th1!=NULL)
+    {
+        th=th->next;
+        th1=th1->next;
+    if(th1!=NULL)
+    {
+        th1=th1->next;
+    }
+    }
+    printf("\nmid valuve:%d",th->data);
+   
+    
+}
+
+void push()
+{
+    NODE *th=head;
+    top=-1;
+    while(th!=NULL)
+    {
+        top=top+1;
+        stack[top]=th->data;
+        th=th->next;
+    }
+    printf("\npush operation done");
+}
+
+void palindrome()
+{
+    NODE *th=head;
+    while(th!=NULL)
+    {
+     f=th->data;
+     item=stack[top];
+    if(f==item)
+    {
+        count++;
+        if(count==size)
+        {
+            printf("\npalindrome");
+            // tail->next=th;
+            return;
+        }
+    }
+    th=th->next;
+    top=top-1;
+ }
+ printf("\nnot palindrome");
+ // tail->next=th;
+}
+
+void loop()
+{
+    NODE *th=head;
+    NODE *th1=head->next;
+    while(th!=NULL)
+}
+void main()
+{
+    createnode();
+    addfirst();
+    addfirst();
+    addfirst();
+     addfirst();
+      addfirst();
+    print(head);
+    printrev(head);
+    mid(head);
+    push();
+    palindrome();
+   // loop();
+    
+}
